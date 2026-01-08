@@ -1,0 +1,178 @@
+/* =========================
+   HERO SECTION
+========================= */
+.safety-hero {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.65)
+    ),
+    url("https://images.unsplash.com/photo-1542751110-97427bbecf20");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: white;
+  padding: 90px 20px;
+}
+
+.safety-hero h1 {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.safety-hero p {
+  font-size: 18px;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.safety-container {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* =========================
+   SAFETY CARDS
+========================= */
+.safety-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.safety-card h2 {
+  color: #111;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.safety-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.safety-card ul {
+  padding-left: 18px;
+}
+
+.safety-card ul li {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+/* =========================
+   DISCLAIMER
+========================= */
+.safety-disclaimer {
+  grid-column: 1 / -1;
+  background: #111;
+  color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.safety-disclaimer h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.safety-disclaimer p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* =========================
+   LAPTOP ≤1200px
+========================= */
+@media (max-width: 1200px) {
+  .safety-hero h1 {
+    font-size: 36px;
+  }
+}
+
+/* =========================
+   TABLET ≤900px
+========================= */
+@media (max-width: 900px) {
+  .safety-hero {
+    padding: 70px 20px;
+  }
+
+  .safety-hero h1 {
+    font-size: 32px;
+  }
+
+  .safety-hero p {
+    font-size: 16px;
+  }
+
+  .safety-container {
+    gap: 20px;
+  }
+}
+
+/* =========================
+   LARGE MOBILE ≤600px
+========================= */
+@media (max-width: 600px) {
+  .safety-hero {
+    padding: 60px 15px;
+  }
+
+  .safety-hero h1 {
+    font-size: 28px;
+  }
+
+  .safety-hero p {
+    font-size: 15px;
+  }
+
+  .safety-card {
+    padding: 20px;
+  }
+
+  .safety-card h2 {
+    font-size: 18px;
+  }
+
+  .safety-card p,
+  .safety-card ul li {
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE ≤480px
+========================= */
+@media (max-width: 480px) {
+  .safety-hero h1 {
+    font-size: 24px;
+  }
+
+  .safety-hero p {
+    font-size: 14px;
+  }
+
+  .safety-disclaimer {
+    padding: 20px;
+  }
+
+  .safety-disclaimer h3 {
+    font-size: 16px;
+  }
+
+  .safety-disclaimer p {
+    font-size: 13px;
+  }
+}

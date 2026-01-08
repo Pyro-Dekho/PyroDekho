@@ -1,0 +1,148 @@
+.about-container {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  color: #222;
+}
+
+/* HERO */
+.about-hero {
+  background: linear-gradient(135deg, #000, #222);
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.about-hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.about-hero span {
+  color: #ffcc00;
+}
+
+.about-hero p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* SECTION */
+.about-section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.about-section h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.about-text {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* CARD */
+.about-card {
+  background: #f8f8f8;
+  padding: 50px 20px;
+  color: black;
+  text-align: center;
+}
+
+.about-card h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+/* LIST */
+.about-list {
+  list-style: none;
+  padding: 0;
+}
+
+.about-list li {
+  padding: 10px 0;
+  font-size: 17px;
+}
+
+/* HIGHLIGHT */
+.about-highlight {
+  background: #111;
+  color: #fff;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.feature {
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* VALUES */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.value-box {
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.value-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* SERVE */
+.serve-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.serve-grid span {
+  background: #f1f1f1;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+/* FOOTER */
+.about-footer {
+  background: #000;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.about-footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-footer li {
+  font-size: 17px;
+  padding: 8px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 32px;
+  }
+}

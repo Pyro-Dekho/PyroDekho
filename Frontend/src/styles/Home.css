@@ -1,0 +1,132 @@
+/* =========================
+   SEARCH BAR
+========================= */
+.home-search-wrapper {
+  width: 100%;
+  padding: 20px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.home-search-input {
+  width: 420px;
+  max-width: 95%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   HOME SECTION
+========================= */
+.home-section {
+  padding: 40px 60px;
+}
+
+.section-title {
+  /* margin-top: -50px; */
+  /* background-color: green; */
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+.listings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: -60px;
+}
+
+/* =========================
+   NO RESULTS
+========================= */
+.no-results {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+/* =========================
+   LAPTOP ≤1200px
+========================= */
+@media (max-width: 1200px) {
+  .home-section {
+    padding: 30px 40px;
+  }
+
+  .listings {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+}
+
+/* =========================
+   TABLET ≤900px
+========================= */
+@media (max-width: 900px) {
+  .home-section {
+    padding: 25px 20px;
+  }
+
+  .listings {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .home-search-input {
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   LARGE MOBILE ≤600px
+========================= */
+@media (max-width: 600px) {
+  .listings {
+    grid-template-columns: 1fr;
+  }
+
+  .home-search-wrapper {
+    padding: 12px;
+  }
+
+  .home-search-input {
+    width: 100%;
+    padding: 10px 14px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE ≤480px
+========================= */
+@media (max-width: 480px) {
+  .home-section {
+    padding: 20px 12px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+}

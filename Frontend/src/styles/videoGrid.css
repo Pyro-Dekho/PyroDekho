@@ -1,0 +1,36 @@
+.video-section {
+  padding: 30px 20px;
+  margin-top: 40px;
+  /* background-color: red; */
+  margin-top: -5px;
+}
+
+/* Title */
+.home-video-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* ===== UPDATED PART ===== */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;                
+  align-items: start;
+  /* background-color: blue; */
+}
+
+
+.video-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+}

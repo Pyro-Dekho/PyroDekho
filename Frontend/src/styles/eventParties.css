@@ -1,0 +1,131 @@
+/* =========================
+   PAGE TITLE
+========================= */
+.page-title {
+  text-align: center;
+  font-size: 28px;
+  /* background-color: green; */
+  padding: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* =========================
+   VIDEO GRID (DESKTOP)
+========================= */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 20px 60px;
+  justify-items: center;
+}
+
+/* =========================
+   VIDEO CARD
+========================= */
+.video-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 360px;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* VIDEO */
+.video-card video {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* TITLE */
+.video-title {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* NO DATA */
+.no-videos {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 18px;
+  padding: 30px;
+}
+
+/* =========================
+   LARGE LAPTOP (≤1200px)
+========================= */
+@media (max-width: 1200px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px 40px;
+  }
+
+  .page-title {
+    font-size: 26px;
+  }
+}
+
+/* =========================
+   TABLET (≤900px)
+========================= */
+@media (max-width: 900px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .video-card video {
+    height: 180px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+}
+
+/* =========================
+   LARGE MOBILE (≤600px)
+========================= */
+@media (max-width: 600px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+
+  .video-card {
+    max-width: 100%;
+  }
+
+  .video-card video {
+    height: 200px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE (≤480px)
+========================= */
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 20px;
+    margin: 20px 0;
+  }
+
+  .video-title {
+    font-size: 14px;
+  }
+
+  .video-card video {
+    height: 180px;
+  }
+}
