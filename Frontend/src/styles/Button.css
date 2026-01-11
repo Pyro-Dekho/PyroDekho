@@ -1,0 +1,46 @@
+.btn-filled {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #000000, #1f1f1f);
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  transition: 
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.3s ease;
+
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* 🔥 Hover effect */
+.btn-filled:hover {
+  background: rgb(152, 229, 38);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* 🖱️ Click / Active */
+.btn-filled:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* ⛔ Disabled */
+.btn-filled:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}

@@ -1,0 +1,165 @@
+.how-container {
+  font-family: "Inter", sans-serif;
+  color: #222;
+}
+
+/* HERO */
+.how-hero {
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.how-hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.how-hero span {
+  color: #ffcc00;
+}
+
+.how-hero p {
+  font-size: 18px;
+  max-width: 720px;
+  margin: auto;
+}
+
+/* INTRO */
+.how-section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.how-section p {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* STEPS */
+.how-steps {
+  background: #f8f8f8;
+  padding: 70px 20px;
+}
+
+.how-steps h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.step-card {
+  max-width: 900px;
+  margin: 0 auto 25px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.step-number {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  background: #ffcc00;
+  color: #000;
+  font-weight: bold;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.step-card h3 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.step-card p {
+  margin-bottom: 10px;
+}
+
+.step-card ul {
+  padding-left: 18px;
+}
+
+.step-card li {
+  padding: 5px 0;
+}
+
+/* TECHNOLOGY */
+.how-tech {
+  background: #111;
+  color: #fff;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: 30px auto 0;
+}
+
+.tech-grid div {
+  background: #1d1d1d;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* SAFETY */
+.how-safety {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.how-safety ul {
+  padding-left: 20px;
+}
+
+.how-safety li {
+  padding: 8px 0;
+  font-size: 17px;
+}
+
+/* FOOTER */
+.how-footer {
+  background: #000;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: 25px auto 0;
+}
+
+.why-grid span {
+  background: #1c1c1c;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .how-hero h1 {
+    font-size: 32px;
+  }
+
+  .step-number {
+    left: 10px;
+  }
+}

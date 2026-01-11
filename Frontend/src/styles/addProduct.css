@@ -1,0 +1,218 @@
+/* ================================
+   ADD PRODUCT PAGE
+================================ */
+
+.add-product-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ================================
+   CARD
+================================ */
+
+.add-product-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  animation: fadeUp 0.4s ease;
+}
+
+/* ================================
+   TITLES
+================================ */
+
+.add-product-title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.add-product-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 22px;
+}
+
+/* ================================
+   FORM ELEMENTS
+================================ */
+
+.add-product-card label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 14px;
+  display: block;
+}
+
+.add-product-card input,
+.add-product-card select {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-top: 6px;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.add-product-card input:focus,
+.add-product-card select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* ================================
+   FILE INPUT
+================================ */
+
+.add-product-card input[type="file"] {
+  padding: 8px;
+  background: #f9fafb;
+}
+
+/* ================================
+   BUTTON
+================================ */
+
+.add-product-card button {
+  margin-top: 22px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #6366f1, #4f46e5);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-product-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+}
+
+.add-product-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================
+   TECHNICAL GRID
+================================ */
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* ================================
+   ANIMATION
+================================ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   LAPTOP ≤1200px
+================================ */
+
+@media (max-width: 1200px) {
+  .add-product-card {
+    max-width: 500px;
+  }
+}
+
+/* ================================
+   TABLET ≤900px
+================================ */
+
+@media (max-width: 900px) {
+  .add-product-page {
+    padding: 30px 20px;
+  }
+
+  .add-product-title {
+    font-size: 20px;
+  }
+
+  .add-product-card {
+    padding: 26px;
+  }
+}
+
+/* ================================
+   LARGE MOBILE ≤600px
+================================ */
+
+@media (max-width: 600px) {
+  .add-product-card {
+    padding: 24px;
+  }
+
+  .add-product-title {
+    font-size: 18px;
+  }
+
+  .add-product-subtitle {
+    font-size: 13px;
+  }
+
+  .add-product-card input,
+  .add-product-card select {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .add-product-card button {
+    font-size: 14px;
+    padding: 11px;
+  }
+}
+
+/* ================================
+   SMALL MOBILE ≤480px
+================================ */
+
+@media (max-width: 480px) {
+  .add-product-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .add-product-title {
+    font-size: 17px;
+  }
+
+  .add-product-card label {
+    font-size: 12px;
+  }
+}

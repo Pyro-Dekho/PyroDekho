@@ -1,0 +1,176 @@
+/* =========================
+   PAGE WRAPPER
+========================= */
+.contact-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  color: white;
+}
+
+/* =========================
+   TITLE & SUBTITLE
+========================= */
+.contact-title {
+  font-size: 42px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.contact-subtitle {
+  font-size: 16px;
+  opacity: 0.85;
+  margin-bottom: 40px;
+  text-align: center;
+  max-width: 600px;
+}
+
+/* =========================
+   CONTACT CARD
+========================= */
+.contact-card {
+  background: #ffffff;
+  color: #333;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   CONTACT ITEM
+========================= */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.contact-item p {
+  margin: 4px 0 0;
+  font-size: 15px;
+  color: #555;
+  word-break: break-word;
+}
+
+/* =========================
+   ICONS
+========================= */
+.icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.phone {
+  color: #ff9800;
+}
+
+.whatsapp {
+  color: #25d366;
+}
+
+.email {
+  color: #e53935;
+}
+
+/* =========================
+   LAPTOP ≤1200px
+========================= */
+@media (max-width: 1200px) {
+  .contact-title {
+    font-size: 36px;
+  }
+}
+
+/* =========================
+   TABLET ≤900px
+========================= */
+@media (max-width: 900px) {
+  .contact-page {
+    padding: 50px 20px;
+  }
+
+  .contact-title {
+    font-size: 32px;
+  }
+
+  .contact-subtitle {
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   LARGE MOBILE ≤600px
+========================= */
+@media (max-width: 600px) {
+  .contact-page {
+    padding: 40px 15px;
+  }
+
+  .contact-title {
+    font-size: 26px;
+  }
+
+  .contact-subtitle {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .contact-card {
+    padding: 24px;
+  }
+
+  .contact-item {
+    gap: 14px;
+  }
+
+  .contact-item h3 {
+    font-size: 16px;
+  }
+
+  .contact-item p {
+    font-size: 14px;
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE ≤480px
+========================= */
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 22px;
+  }
+
+  .contact-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .contact-item {
+    padding: 14px 0;
+  }
+
+  .contact-item p {
+    font-size: 13px;
+  }
+}

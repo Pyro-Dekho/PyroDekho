@@ -1,0 +1,168 @@
+/* =========================
+   PAGE WRAPPER
+========================= */
+.add-video-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* =========================
+   CARD
+========================= */
+.add-video-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   TITLES
+========================= */
+.add-video-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.add-video-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   LABELS & INPUTS
+========================= */
+.add-video-card label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  margin-top: 16px;
+}
+
+.add-video-card input,
+.add-video-card select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.add-video-card input[type="file"] {
+  padding: 6px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.add-video-card button {
+  margin-top: 24px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #ff4d4f;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-video-card button:hover {
+  background: #e63e3f;
+  transform: translateY(-1px);
+}
+
+.add-video-card button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================
+   LAPTOP ≤1200px
+========================= */
+@media (max-width: 1200px) {
+  .add-video-card {
+    max-width: 400px;
+  }
+
+  .add-video-title {
+    font-size: 22px;
+  }
+}
+
+/* =========================
+   TABLET ≤900px
+========================= */
+@media (max-width: 900px) {
+  .add-video-page {
+    padding: 30px 20px;
+  }
+
+  .add-video-card {
+    padding: 28px;
+  }
+
+  .add-video-title {
+    font-size: 21px;
+  }
+}
+
+/* =========================
+   LARGE MOBILE ≤600px
+========================= */
+@media (max-width: 600px) {
+  .add-video-card {
+    padding: 24px;
+  }
+
+  .add-video-title {
+    font-size: 20px;
+  }
+
+  .add-video-subtitle {
+    font-size: 13px;
+  }
+
+  .add-video-card input,
+  .add-video-card select {
+    font-size: 13px;
+    padding: 9px 11px;
+  }
+
+  .add-video-card button {
+    font-size: 15px;
+    padding: 11px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE ≤480px
+========================= */
+@media (max-width: 480px) {
+  .add-video-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .add-video-title {
+    font-size: 18px;
+  }
+
+  .add-video-card label {
+    font-size: 13px;
+  }
+}
