@@ -1,0 +1,133 @@
+/* PAGE WRAPPER */
+.cracker-detail-page {
+  display: flex;
+  gap: 40px;
+  padding: 40px 6%;
+  background-color: #f1f3f6;
+}
+
+/* IMAGE SECTION */
+.cracker-image-section {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cracker-image-section img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  object-fit: contain; /* no blur */
+}
+
+/* INFO SECTION */
+.cracker-info-section {
+  flex: 1.2;
+  background: #fff;
+  padding: 30px;
+}
+
+/* BACK BUTTON */
+.back-button {
+  background: none;
+  border: none;
+  color: #2874f0;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+/* TITLE */
+.cracker-title {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+/* RATING */
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rating-badge {
+  background: #388e3c;
+  color: #fff;
+  padding: 3px 6px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+.rating-text {
+  font-size: 14px;
+  color: #555;
+}
+
+/* PRICE */
+.special-price-label {
+  color: #388e3c;
+  font-size: 14px;
+}
+
+.price-row {
+  margin: 10px 0;
+}
+
+.current-price {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.old-price {
+  font-size: 16px;
+  color: #878787;
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+
+.discount {
+  color: #388e3c;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+/* HIGHLIGHTS */
+.product-highlights {
+  margin: 20px 0;
+}
+
+.product-highlights li {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* TECH DETAILS */
+.technical-details h3 {
+  margin-bottom: 10px;
+}
+
+.technical-details p {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .cracker-detail-page {
+    flex-direction: column;
+  }
+
+  .cracker-image-section img {
+    max-width: 100%;
+  }
+}
