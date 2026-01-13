@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/signupFinal.css";
+import "../styles/signup.css";
 import toast from "react-hot-toast";
 import Header from "../components/Header";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
