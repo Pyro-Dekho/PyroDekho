@@ -7,10 +7,13 @@
   background: #ffffff;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 10;
 }
+
+
 
 .home-search-input {
   width: 420px;
@@ -21,6 +24,18 @@
   border: 1px solid #ddd;
   outline: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#filter-title{
+  font-weight: bolder;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-right: 5px;
+}
+#filter{
+  padding: 4px;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
 /* =========================

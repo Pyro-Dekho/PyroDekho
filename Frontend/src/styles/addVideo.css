@@ -72,7 +72,7 @@
   padding: 12px;
   border: none;
   border-radius: 10px;
-  background: #ff4d4f;
+  /* background: #ff4d4f; */
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -81,7 +81,7 @@
 }
 
 .add-video-card button:hover {
-  background: #e63e3f;
+  /* background: #e63e3f; */
   transform: translateY(-1px);
 }
 
