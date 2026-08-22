@@ -39,12 +39,6 @@ function Home() {
           axios.get(`${API}/videos?type=home`),
         ]);
 
-<<<<<<< HEAD
-=======
-        console.log("Home API Response:", homeRes.data);
-        console.log("Video API Response:", videoRes.data);
->>>>>>> 3a8f72d (Added Filter)
-
         setHomeData(homeRes?.data?.data || {});
         setVideos(videoRes?.data?.data || []);
       } catch (error) {
@@ -58,6 +52,45 @@ function Home() {
   }, []);
 
   // ===============================
+  // FILTER DATA
+  // ===============================
+  
+  console.log(homeData)
+  console.log(videos)
+  const filteredData = {};
+
+  Object.entries(homeData).forEach(([category, items]) => {
+    // Make sure items is an array
+    if (!Array.isArray(items)) return;
+
+    const filteredItems = items.filter((item) => {
+      // ===============================
+      // SEARCH FILTER
+      // ===============================
+
+      const productName = item?.name || item?.productName || "";
+
+      const matchesSearch = productName
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+      // ===============================
+      // CATEGORY FILTER
+      // ===============================
+
+      const matchesCategory =
+        filter === "All" || category === filter;
+
+      return matchesSearch && matchesCategory;
+    });
+
+    // Add category only if products exist
+    if (filteredItems.length > 0) {
+      filteredData[category] = filteredItems;
+    }
+  });
+
+  // ===============================
   // LOADING STATE
   // ===============================
 
@@ -69,65 +102,6 @@ function Home() {
       </>
     );
   }
-
-  // ===============================
-  // SEARCH + CATEGORY FILTER
-  // ===============================
-
-  const filteredData = {};
-
-  Object.entries(homeData).forEach(([category, items]) => {
-<<<<<<< HEAD
-    if (!Array.isArray(items)) return;
-=======
-    // Make sure items is an array
-    if (!Array.isArray(items)) {
-      return;
-    }
->>>>>>> 3a8f72d (Added Filter)
-
-    // console.log("Category:", category);
-    // console.log("Items:", items);
-
-<<<<<<< HEAD
-=======
-    // ===============================
-    // CATEGORY FILTER
-    // ===============================
-
-    const categoryMatches =
-      filter === "All" ||
-      category.toLowerCase() === filter.toLowerCase();
-    
-
-    // If category doesn't match selected filter
-    // skip this category
-    if (!categoryMatches) {
-      return;
-    }
-
-    // ===============================
-    // SEARCH FILTER
-    // ===============================
-
-    const filteredItems = items.filter((item) => {
-      const title = item.title?.toLowerCase() || "";
-      return title.includes(searchTerm.toLowerCase());
-    });
-
-    // Only add category if it has products
->>>>>>> 3a8f72d (Added Filter)
-    if (filteredItems.length > 0) {
-      filteredData[category] = filteredItems;
-    }
-  });
-
-  // console.log("Selected Filter:", filter);
-  // console.log("Search Term:", searchTerm);
-  // console.log("Filtered Data:", filteredData);
-
-  // Always use filteredData
-  const displayData = filteredData;
 
   return (
     <>
@@ -212,7 +186,7 @@ function Home() {
           NO RESULTS
       ================================ */}
 
-      {Object.keys(displayData).length === 0 && (
+      {Object.keys(filteredData).length === 0 && (
         <p className="no-results">
           No products found 🔍
         </p>
@@ -222,7 +196,7 @@ function Home() {
           PRODUCT SECTIONS
       ================================ */}
 
-      {Object.entries(displayData).map(
+      {Object.entries(filteredData).map(
         ([category, items]) => (
           <section
             key={category}
