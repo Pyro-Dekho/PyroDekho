@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,13 +10,17 @@ import { FaPhoneAlt, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 const API = import.meta.env.VITE_API_BASE_URL;
 
 function BookNow() {
+  // Coming from a product page? Pre-fill the message
+  const { state } = useLocation();
   const [form, setForm] = useState({
     fullName: "",
     email: "",
     phone: "",
     eventType: "",
     eventDate: "",
-    message: "",
+    message: state?.productTitle
+      ? `I'm interested in "${state.productTitle}". `
+      : "",
   });
 
   console.log(API)

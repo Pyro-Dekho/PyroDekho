@@ -10,6 +10,7 @@ import "../styles/cracker.css";
 import "../styles/videoGrid.css";
 import "../styles/listing.css";
 import CardListing from "../components/CardListing";
+import { useSearch } from "../context/SearchContext";
 const API = import.meta.env.VITE_API_BASE_URL;
 
 
@@ -17,7 +18,7 @@ function Crackers() {
   const [crackers, setCrackers] = useState([]);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm } = useSearch();
   const [error, setError] = useState("");
 
 useEffect(() => {
@@ -84,7 +85,7 @@ useEffect(() => {
   }
 
   const filteredCrackers = crackers.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    (product.title || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -94,17 +95,6 @@ useEffect(() => {
       {/* 🔥 PRODUCTS */}
       <section className="page-container">
         <h2 className="page-title">Crackers</h2>
-
-        {/* 🔍 SEARCH */}
-        <div className="page-search-wrapper">
-          <input
-            type="text"
-            className="page-search-input"
-            placeholder="Search pyro effects, crackers..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
 
         <div className="listings">
           {filteredCrackers.length > 0 ? (

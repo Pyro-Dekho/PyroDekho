@@ -1,13 +1,18 @@
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import optimizeImage from "../utils/optimizeImage";
 
 function CardListing({ _id, image, title, price, slug ,category}) {
   const navigate = useNavigate();
 
-  const handleViewDetails = () => {
-    const token = localStorage.getItem("token");
+  const { isAuth, loading } = useAuth();
 
-    if (!token) {
+  const handleViewDetails = () => {
+    // Wait until the login check (token or Google cookie) has finished
+    if (loading) return;
+
+    if (!isAuth) {
       toast.error("Please login or sign up to view product details 🔐");
       navigate("/login"); 
       return;
@@ -18,7 +23,14 @@ function CardListing({ _id, image, title, price, slug ,category}) {
 
   return (
     <div className="card">
-      <img src={image} alt={title} />
+      <img
+        src={optimizeImage(image, 500)}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        width="500"
+        height="400"
+      />
 
       <div className="card-body flex flex-col gap-4">
         <h3>{title}</h3>

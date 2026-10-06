@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import "../styles/eventParties.css";
+import { pauseOtherVideos } from "../utils/pauseOtherVideos";
 const API = import.meta.env.VITE_API_BASE_URL
 
 function EventParties() {
@@ -51,7 +52,7 @@ function EventParties() {
         {videos.length > 0 ? (
           videos.map((video) => (
             <div key={video._id} className="video-card">
-              <video controls preload="metadata">
+              <video controls preload="metadata" onPlay={pauseOtherVideos}>
                 <source src={video.videoUrl} type="video/mp4" />
               </video>
               <h3 className="video-title">{video.title}</h3>

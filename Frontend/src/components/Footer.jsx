@@ -8,7 +8,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         {/* BRAND */}
-        <div className="footer-col">
+        <div className="footer-col footer-brand">
           <h3 className="footer-title">PyroDekho</h3>
           <p>Buy Imported Cold Pyro</p>
           <p className="footer-small">
@@ -17,7 +17,7 @@ function Footer() {
         </div>
 
         {/* CONNECT */}
-        <div className="footer-col">
+        <div className="footer-col footer-connect">
           <h4>Connect With Us</h4>
           <div className="footer-social">
             <a
@@ -40,14 +40,14 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              You Tube
+              YouTube
             </a>
             <a
               href="https://www.linkedin.com/in/pyro-dekho-3560633a4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Linkedln
+              LinkedIn
             </a>
             
           </div>

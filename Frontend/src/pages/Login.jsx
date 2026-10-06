@@ -5,15 +5,16 @@ import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../styles/login.css";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
 function Login() {
   const navigate = useNavigate();
+  const { refreshAuth } = useAuth();
   const query = new URLSearchParams(useLocation().search);
-  
+
   const redirect = query.get("redirect") || "/";
-  
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -32,13 +33,10 @@ function Login() {
     const toastId = toast.loading("Logging you in...");
 
     try {
-      const res = await axios.post(
-        `${API}/auth/login`,
-        {
-          email: form.email,
-          password: form.password,
-        }
-      );
+      const res = await axios.post(`${API}/auth/login`, {
+        email: form.email,
+        password: form.password,
+      });
 
       const data = res.data;
 
@@ -49,14 +47,14 @@ function Login() {
       // Save auth data
       localStorage.setItem("token", data.token);
       localStorage.setItem("userEmail", data.user.email);
+      await refreshAuth();
 
       navigate(redirect, { replace: true });
     } catch (error) {
-     
-      toast.error(       
+      toast.error(
         error.response?.data?.message ||
           "Something went wrong. Please try again ❌",
-        { id: toastId }
+        { id: toastId },
       );
     } finally {
       setLoading(false);
@@ -76,9 +74,7 @@ function Login() {
             type="email"
             placeholder="Email address"
             value={form.email}
-            onChange={(e) =>
-              setForm({ ...form, email: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
 
           {/* 🔐 Password */}
@@ -87,9 +83,7 @@ function Login() {
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={form.password}
-              onChange={(e) =>
-                setForm({ ...form, password: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
             <span
               className="eye-icon"
@@ -99,19 +93,25 @@ function Login() {
             </span>
           </div>
 
-          <button
-            className="primary-btn"
-            onClick={loginNow}
-            disabled={loading}
-          >
+          <button className="primary-btn" onClick={loginNow} disabled={loading}>
             {loading ? "Logging in..." : "Login"}
+          </button>
+
+          <span>or</span>
+
+          <button
+          className="primary-btn"
+            type="button"
+            onClick={() => {
+              window.location.href = "http://localhost:5000/api/auth/google";
+            }}
+          >
+            Continue with Google
           </button>
 
           <p className="footer-text">
             Don’t have an account?{" "}
-            <span onClick={() => navigate("/signup")}>
-              Create one
-            </span>
+            <span onClick={() => navigate("/signup")}>Create one</span>
           </p>
 
           <p className="footer-text">

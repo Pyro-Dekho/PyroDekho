@@ -116,23 +116,86 @@
    MOBILE ≤600px
 ========================= */
 @media (max-width: 600px) {
+  .footer {
+    margin-top: 40px;
+  }
+
+  /* two columns: brand + connect full width, link groups side by side */
   .footer-container {
-    grid-template-columns: 1fr;
-    padding: 30px 15px;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    padding: 32px 18px 20px;
+    gap: 26px 18px;
+    text-align: left;
+  }
+
+  .footer-brand,
+  .footer-connect {
+    grid-column: 1 / -1;
+    text-align: center;
   }
 
   .footer-title {
-    font-size: 20px;
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  .footer-brand p {
+    margin: 0 auto;
+    max-width: 320px;
   }
 
   .footer-col h4 {
-    font-size: 16px;
+    font-size: 15px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #262626;
   }
 
-  .footer-col ul li,
-  .footer-social span {
+  .footer-col ul li {
     font-size: 14px;
+    margin-bottom: 0;
+    padding: 8px 0; /* comfortable tap target */
+  }
+
+  /* social links become pill buttons in a row */
+  .footer-connect h4 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+  }
+
+  .footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .footer-social a {
+    margin: 0;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 999px;
+  }
+
+  .footer-social a:active {
+    background: #ff6a00;
+    border-color: #ff6a00;
+  }
+
+  /* Legal spans the full width as a tidy inline list */
+  .footer-col:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-col:last-child ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 18px;
   }
 }
 
