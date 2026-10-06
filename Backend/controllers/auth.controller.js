@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const resetPasswordTemplate = require("../utils/resetPasswordTemplate");
 const { ADMIN_EMAILS } = require("../config/admin");
 const sendEmail = require("../utils/emailSend");
+const googleClient = require("../config/google");
 
 require("dotenv").config();
 
@@ -96,16 +97,14 @@ exports.login = async (req, res) => {
     }
 
     const token = jwt.sign(
-    {
-      userId:user._id,
-      name:user.name, 
-      email: user.email, 
-    },
-    process.env.JWT_SECRET,
-     { expiresIn: "7d" }
+      {
+        userId: user._id,
+        name: user.name,
+        email: user.email,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" },
     );
-
-
 
     return res.status(200).json({
       success: true,
@@ -160,7 +159,6 @@ exports.forgotPassword = async (req, res) => {
 
     const resetLink = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
 
-    
     await sendEmail({
       to: user.email,
       subject: "Reset Your PyroDekho Password",
@@ -201,10 +199,7 @@ exports.resetPassword = async (req, res) => {
       });
     }
 
-    const hashedToken = crypto
-      .createHash("sha256")
-      .update(token)
-      .digest("hex");
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
 
     const user = await User.findOne({
       resetPasswordToken: hashedToken,
@@ -237,4 +232,166 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
+//Google Authentication
+exports.googleAuthentication = (req, res) => {
+  const authorizationUrl = googleClient.generateAuthUrl({
+    access_type: "offline",
+    scope: ["openid", "email", "profile"],
+    prompt: "select_account",
+  });
 
+  res.redirect(authorizationUrl);
+};
+
+//Google callback
+exports.googleCallback = async (req, res) => {
+  try {
+    const { code } = req.query;
+
+    if (!code) {
+      return res.status(400).json({
+        success: false,
+        message: "Authorization code missing",
+      });
+    }
+
+    // Exchange authorization code
+    const { tokens } = await googleClient.getToken(code);
+
+    // Verify Google's ID token
+    const ticket = await googleClient.verifyIdToken({
+      idToken: tokens.id_token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+
+    const { sub, email, email_verified, name, picture } = payload;
+
+    // Google email must exist
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Google account email not available",
+      });
+    }
+
+    // Find Google account
+    let user = await User.findOne({
+      googleId: sub,
+    });
+
+    // If not found, check existing email
+    if (!user) {
+      user = await User.findOne({
+        email: email.toLowerCase(),
+      });
+    }
+
+    // Existing user
+    if (user) {
+      // Link Google account
+      if (email_verified && !user.googleId) {
+        user.googleId = sub;
+        user.emailVerified = true;
+
+        await user.save();
+      }
+    }
+
+    // Create new user
+    if (!user) {
+      user = await User.create({
+        name,
+        email: email.toLowerCase(),
+        googleId: sub,
+        emailVerified: true,
+      });
+    }
+
+    // Create PyroDekho JWT
+    const token = jwt.sign(
+      {
+        name:user.name,
+        userId: user._id,
+        email: user.email,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d",
+      },
+    );
+
+    // Temporary development response
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return res.redirect(process.env.CLIENT_URL);
+  } catch (error) {
+    console.error("Google OAuth Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Google authentication failed",
+    });
+  }
+};
+
+exports.logout = (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  });
+
+  return res.status(200).json({ success: true, message: "Logged out" });
+};
+
+exports.getCurrentUser = async (req, res) => {
+    try {
+        const token = req.cookies.token;
+
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: "Not authenticated"
+            });
+        }
+
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_SECRET
+        );
+
+        const user = await User.findById(decoded.userId)
+            .select("-passwordHash");
+
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                phone: user.phone,
+                address: user.address
+            }
+        });
+
+    } catch (error) {
+        return res.status(401).json({
+            success: false,
+            message: "Not authenticated"
+        });
+    }
+};

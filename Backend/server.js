@@ -1,8 +1,10 @@
 require("dotenv").config();
 
+const cookieParser = require("cookie-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const compression = require("compression");
 const fileUpload = require("express-fileupload");
 
 
@@ -18,6 +20,10 @@ const app = express();
 /* ==============================
    GLOBAL MIDDLEWARES
 ============================== */
+
+
+app.use(compression());
+app.use(cookieParser());
 
 // Enable CORS (configure origin in production)
 app.use(
@@ -55,6 +61,12 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/videos", videoRoutes);
 app.use("/api", eventEnquiryRoutes);
+// Google Sheets Webhook Route
+app.post("/api/sheet-webhook", (req, res) => {
+  const sheetData = req.body;
+  console.log("Google Sheets से नया डेटा आया:", sheetData);
+  res.status(200).json({ success: true, message: "Data received from Google Sheets" });
+});
 
 /* ==============================
    ERROR HANDLING

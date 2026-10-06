@@ -4,13 +4,14 @@ import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import "../styles/listing.css";
 import CardListing from "../components/CardListing";
+import { useSearch } from "../context/SearchContext";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
 function Outdoor() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm } = useSearch();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -52,17 +53,6 @@ function Outdoor() {
 
       <div className="page-container">
         <h2 className="page-title">Outdoor Pyro Products</h2>
-
-        {/* 🔍 SEARCH BAR */}
-        <div className="page-search-wrapper">
-          <input
-            type="text"
-            className="page-search-input"
-            placeholder="Search outdoor pyro products..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
 
         <section className="listings">
           {filteredProducts.length > 0 ? (

@@ -1,18 +1,9 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
 import "../styles/slider.css";
-import "../styles/Button.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import Image1 from "../assets/sliderImage/Image1.jpeg";
-import Image2 from "../assets/sliderImage/Image2.jpeg";
-import Image3 from "../assets/sliderImage/Image3.jpeg";
-import Image4 from "../assets/sliderImage/Image4.jpeg";
-import Image5 from "../assets/sliderImage/Image5.jpeg";
-import Image6 from "../assets/sliderImage/Image6.jpeg";
+import heroVideo from "../assets/Video/Fireworks.mp4";
+import heroPoster from "../assets/sliderImage/Image1.jpeg";
 
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -29,6 +20,8 @@ function HeroSlider() {
   });
 
   const [loading, setLoading] = useState(false);
+  // On phones the form is collapsed behind a button so the hero fits one screen
+  const [showForm, setShowForm] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -79,90 +72,132 @@ function HeroSlider() {
     }
   };
 
-  const slides = [Image1, Image2, Image3, Image4, Image5, Image6];
+  // Scroll just past the hero to reveal the products
+  const scrollDown = () => {
+    window.scrollTo({ top: window.innerHeight - 72, behavior: "smooth" });
+  };
 
   return (
-    <div className="hero-container">
-      <Swiper
-        modules={[Autoplay, EffectFade]}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
-        effect="fade"
+    <section
+      className="hero"
+      style={{ backgroundImage: `url(${heroPoster})` }}
+    >
+      <video
+        className="hero-video"
+        src={heroVideo}
+        poster={heroPoster}
+        autoPlay
+        muted
         loop
-        className="hero-swiper"
-      >
-        {slides.map((img, i) => (
-          <SwiperSlide key={i}>
-            <div
-              className="hero-slide"
-              style={{ backgroundImage: `url(${img})` }}
+        playsInline
+        preload="auto"
+      />
+
+      <div className="hero-overlay">
+        {/* LEFT CONTENT */}
+        <div className="hero-content">
+          <span className="hero-badge">Imported Cold Pyro</span>
+
+          <h1>
+            Light Up Every <br />
+            <span>Celebration</span>
+          </h1>
+
+          <p className="hero-sub">
+            Safe • Smokeless • Delivered All India
+          </p>
+
+          <div className="hero-buttons">
+            <button
+              onClick={() => navigate("/indoor")}
+              className="hero-btn hero-btn-primary"
             >
-              <div className="hero-overlay">
+              Indoor
+            </button>
+            <button
+              onClick={() => navigate("/outdoor")}
+              className="hero-btn hero-btn-primary"
+            >
+              Outdoor
+            </button>
+            <button
+              onClick={() => navigate("/eventParties")}
+              className="hero-btn hero-btn-ghost"
+            >
+              Event Parties
+            </button>
+            <button
+              onClick={() => navigate("/crackers")}
+              className="hero-btn hero-btn-ghost"
+            >
+              Crackers
+            </button>
+          </div>
+        </div>
 
-                {/* LEFT FORM */}
-                <form className="hero-form" onSubmit={SubmitHandler}>
-                  <h3>Get Best Price</h3>
+        {/* MOBILE: button that reveals the form */}
+        <button
+          type="button"
+          className="hero-cta-mobile"
+          onClick={() => setShowForm((open) => !open)}
+        >
+          {showForm ? "Close" : "Get Best Price"}
+        </button>
 
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                  />
+        {/* RIGHT FORM */}
+        <form
+          className={`hero-form ${showForm ? "open" : ""}`}
+          onSubmit={SubmitHandler}
+        >
+          <h3>Get Best Price</h3>
+          <p className="hero-form-sub">
+            Share your details and we will call you back with the best quote.
+          </p>
 
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    maxLength={10}
-                  />
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+          />
 
-                  <textarea
-                    placeholder="Your Address"
-                    name="address"
-                    value={form.address}
-                    onChange={handleChange}
-                  />
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            maxLength={10}
+          />
 
-                  <button type="submit" disabled={loading}>
-                    {loading ? "Submitting..." : "Submit Details"}
-                  </button>
-                </form>
+          <textarea
+            placeholder="Your Address"
+            name="address"
+            value={form.address}
+            onChange={handleChange}
+          />
 
-                {/* RIGHT CONTENT */}
-                <div className="hero-content">
-                  <h1>
-                    Buy Imported <br />
-                    Indoor / Outdoor Cold <br />
-                    Pyro
-                  </h1>
+          <button type="submit" disabled={loading}>
+            {loading ? "Submitting..." : "Get Best Price"}
+          </button>
 
-                  <p>Select Indoor or Outdoor Pyro</p>
+          <small className="hero-form-note">
+            No spam. Free consultation.
+          </small>
+        </form>
+      </div>
 
-                  <div className="hero-buttons">
-                    <button onClick={() => navigate("/indoor")} className="btn-filled">
-                      Indoor
-                    </button>
-                    <button onClick={() => navigate("/outdoor")} className="btn-filled">
-                      Outdoor
-                    </button>
-                    <button onClick={() => navigate("/eventParties")} className="btn-filled">
-                      Event Parties
-                    </button>
-                    <button onClick={() => navigate("/crackers")} className="btn-filled">
-                      Crackers
-                    </button>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+      <button
+        type="button"
+        className="hero-scroll"
+        onClick={scrollDown}
+        aria-label="Scroll to products"
+      >
+        <span>Explore products</span>
+        <i aria-hidden="true">⌄</i>
+      </button>
+    </section>
   );
 }
 

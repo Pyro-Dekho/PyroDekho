@@ -1,0 +1,136 @@
+/* =========================================================
+   MOBILE PRODUCT GRID (loaded last so it wins over page CSS)
+   Two products per row, compact e-commerce style cards.
+========================================================= */
+@media (max-width: 600px) {
+  .home-section {
+    margin: 16px 10px;
+    padding: 16px 12px 18px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .listings {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 0;
+  }
+
+  .home-section .listings {
+    padding: 12px 0 0;
+  }
+
+  .card {
+    flex: none;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card img {
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: #fff;
+    padding: 6px;
+  }
+
+  .card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 10px 10px;
+    text-align: left;
+  }
+
+  .card-body h3 {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    min-height: 2.6em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-body p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #15803d;
+  }
+
+  .card-body .btn-filled {
+    width: 100%;
+    margin-top: auto;
+    padding: 8px 6px;
+    font-size: 12px;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .listings .no-results,
+  .listings .notfound {
+    grid-column: 1 / -1;
+    position: static;
+    text-align: center;
+    font-size: 16px;
+  }
+}
+
+/* =========================================================
+   MOBILE VIDEO GRID: two videos per row
+========================================================= */
+@media (max-width: 600px) {
+  .video-section {
+    margin: 16px 10px;
+    padding: 16px 12px 18px;
+    border-radius: 14px;
+  }
+
+  .home-video-title {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .video-card {
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .video-card video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .video-title {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.3;
+    /* keep titles to two lines so cards stay even */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

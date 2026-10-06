@@ -7,9 +7,8 @@ const cloudinary = require("cloudinary").v2;
 exports.getProducts = async (req, res) => {
   try {
     const { category } = req.query;
-    console.log(category)
     const filter = category ? { category } : {};
-    const products = await Product.find(filter).sort({ createdAt: -1 });
+    const products = await Product.find(filter).sort({ createdAt: -1 }).lean();
 
     res.status(200).json({
       success: true,
@@ -60,7 +59,7 @@ exports.getHomeProducts = async (req, res) => {
     ];
 
     const queries = categories.map((cat) =>
-      Product.find({ category: cat }).sort({ createdAt: -1 })
+      Product.find({ category: cat }).sort({ createdAt: -1 }).lean()
     );
 
     const results = await Promise.all(queries);
@@ -70,6 +69,7 @@ exports.getHomeProducts = async (req, res) => {
       response[cat] = results[index];
     });
 
+    res.set("Cache-Control", "public, max-age=60");
     res.status(200).json({
       success: true,
       data: response,

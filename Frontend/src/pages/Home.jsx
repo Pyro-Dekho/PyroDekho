@@ -7,6 +7,7 @@ import Slider from "../components/HeroSlider";
 import Loader from "../components/Loader";
 import "../styles/Home.css";
 import axios from "axios";
+import { useSearch } from "../context/SearchContext";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
@@ -19,11 +20,8 @@ function Home() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Selected category
-  const [filter, setFilter] = useState("All");
-
-  // Search text
-  const [searchTerm, setSearchTerm] = useState("");
+  // Search text and selected category (both set in the Header)
+  const { searchTerm, filters } = useSearch();
 
   // ===============================
   // FETCH HOME DATA
@@ -55,31 +53,47 @@ function Home() {
   // FILTER DATA
   // ===============================
   
-  console.log(homeData)
-  console.log(videos)
+  // console.log(homeData)
+  // console.log(videos)
+  // Hide the hero slider while the user is searching or filtering
+  const isFiltering = searchTerm.trim() !== "" || filters.length > 0;
+
   const filteredData = {};
 
   Object.entries(homeData).forEach(([category, items]) => {
     // Make sure items is an array
     if (!Array.isArray(items)) return;
+    // console.log(items)
+
+    // "mostSearched" -> "most searched"
+    const categoryLabel = category
+      .replace(/([A-Z])/g, " $1")
+      .toLowerCase();
+    const query = searchTerm.trim().toLowerCase();
+
+    // Searching a category name (e.g. "most searched", "fog") shows the whole section
+    const categoryMatchesSearch =
+      query !== "" &&
+      (categoryLabel.includes(query) ||
+        category.toLowerCase().includes(query));
 
     const filteredItems = items.filter((item) => {
       // ===============================
       // SEARCH FILTER
       // ===============================
 
-      const productName = item?.name || item?.productName || "";
+      const productName = item?.title || "";
 
-      const matchesSearch = productName
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+      const matchesSearch =
+        categoryMatchesSearch ||
+        productName.toLowerCase().includes(query);
 
       // ===============================
       // CATEGORY FILTER
       // ===============================
 
       const matchesCategory =
-        filter === "All" || category === filter;
+        filters.length === 0 || filters.includes(category);
 
       return matchesSearch && matchesCategory;
     });
@@ -112,75 +126,10 @@ function Home() {
       <Header />
 
       {/* ===============================
-          SEARCH + FILTER
-      ================================ */}
-
-      <div className="home-search-wrapper">
-        {/* SEARCH INPUT */}
-
-        <input
-          type="text"
-          className="home-search-input"
-          placeholder="Search fireworks, crackers, pyros..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-
-        {/* FILTER LABEL */}
-
-        <label htmlFor="filter" id="filter-title">
-          Filter:
-        </label>
-
-        {/* CATEGORY SELECT */}
-
-        <select
-          name="filter"
-          id="filter"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="All">All</option>
-
-          <option value="mostSearched">
-            Most Searched
-          </option>
-
-          <option value="smokeless">
-            Smokeless
-          </option>
-
-          <option value="event">
-            Event
-          </option>
-
-          <option value="club">
-            Club
-          </option>
-
-          <option value="wedding">
-            Wedding
-          </option>
-
-          <option value="stage">
-            Stage
-          </option>
-
-          <option value="birthday">
-            Birthday
-          </option>
-
-          <option value="fog">
-            Fog
-          </option>
-        </select>
-      </div>
-
-      {/* ===============================
           HERO SLIDER
       ================================ */}
 
-      <Slider />
+      {!isFiltering && <Slider />}
 
       {/* ===============================
           NO RESULTS

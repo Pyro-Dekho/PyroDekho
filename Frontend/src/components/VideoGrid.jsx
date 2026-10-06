@@ -1,3 +1,6 @@
+import "../styles/videoGrid.css";
+import { pauseOtherVideos } from "../utils/pauseOtherVideos";
+
 function VideoGrid({ videos }) {
   return (
     <section className="video-section ">
@@ -6,7 +9,7 @@ function VideoGrid({ videos }) {
       <div className="video-grid">
         {videos.map((video) => (
           <div key={video._id} className="video-card">
-            <video controls preload="metadata">
+            <video controls preload="metadata" onPlay={pauseOtherVideos}>
               <source src={video.videoUrl} type="video/mp4" />
             </video>
             <h3 className="video-title">{video.title}</h3>
