@@ -103,7 +103,7 @@ function Login() {
           className="primary-btn"
             type="button"
             onClick={() => {
-              window.location.href = "http://localhost:5000/api/auth/google";
+              window.location.href = `${API}/auth/google`;
             }}
           >
             Continue with Google
