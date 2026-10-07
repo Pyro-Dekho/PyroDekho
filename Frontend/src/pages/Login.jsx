@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import "../styles/login.css";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
@@ -97,15 +98,18 @@ function Login() {
             {loading ? "Logging in..." : "Login"}
           </button>
 
-          <span>or</span>
+          <div className="auth-divider">
+            <span>or</span>
+          </div>
 
           <button
-          className="primary-btn"
+            className="google-btn"
             type="button"
             onClick={() => {
               window.location.href = `${API}/auth/google`;
             }}
           >
+            <FcGoogle size={22} />
             Continue with Google
           </button>
 

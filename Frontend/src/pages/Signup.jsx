@@ -5,12 +5,14 @@ import "../styles/signup.css";
 import toast from "react-hot-toast";
 import Header from "../components/Header";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
 
 function Signup() {
   const navigate = useNavigate();
+  const { refreshAuth } = useAuth();
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -65,12 +67,16 @@ function Signup() {
         { name, email, phone, password, address }
       );
 
-      toast.success(
-        "Account created successfully 🎉 Please login to continue.",
-        { id: toastId }
-      );
+      toast.success("Account created successfully 🎉 Welcome to PyroDekho!", {
+        id: toastId,
+      });
 
-      navigate("/login");
+      // Log the user in and go to the home page
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userEmail", res.data.user.email);
+      await refreshAuth();
+
+      navigate("/", { replace: true });
     } catch (err) {
       if (err.response?.status === 409) {
         toast.error(
