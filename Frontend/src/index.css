@@ -10,6 +10,6 @@ html,body {
   /* max-width: 100%; */
   /* overflow-x: hidden; */
   font-family: Arial, sans-serif;
-  background: #f8f8f8;
+  background: transparent; /* global background lives in AppBackground */
   color: #222;
 }

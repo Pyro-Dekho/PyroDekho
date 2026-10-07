@@ -17,10 +17,10 @@ exports.signup = async (req, res) => {
   try {
     const { name, email, phone, password, address } = req.body;
 
-    if (!name || !email || !phone || !password || !address) {
+    if (!name || !email || !phone || !password) {
       return res.status(400).json({
         success: false,
-        message: "All fields are required",
+        message: "Name, email, phone and password are required",
       });
     }
 
@@ -44,17 +44,34 @@ exports.signup = async (req, res) => {
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    await User.create({
+    const user = await User.create({
       name: name.trim(),
       email: email.toLowerCase(),
       phone,
       passwordHash,
-      address: address.trim(),
+      address: address ? address.trim() : "",
     });
+
+    // Log the new user in straight away
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        name: user.name,
+        email: user.email,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" },
+    );
 
     return res.status(201).json({
       success: true,
       message: "Signup successful",
+      token,
+      user: {
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+      },
     });
   } catch (error) {
     console.error("SIGNUP ERROR:", error);

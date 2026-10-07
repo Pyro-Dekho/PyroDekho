@@ -1,94 +1,152 @@
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/safety.css";
+
+const BADGES = [
+  { icon: "🔥", label: "No open flame" },
+  { icon: "🌡️", label: "Cool to touch" },
+  { icon: "💨", label: "No toxic smoke" },
+  { icon: "🏛️", label: "Indoor & outdoor" },
+];
+
+const SECTIONS = [
+  {
+    icon: "✨",
+    title: "Why Cold Pyro is Safe",
+    tone: "good",
+    items: [
+      "No gunpowder or explosive chemicals",
+      "Sparks are cool to touch and do not cause burns",
+      "No open fire, no smoke, no harmful gases",
+      "Safe for indoor and outdoor use",
+    ],
+  },
+  {
+    icon: "📋",
+    title: "Usage Safety Guidelines",
+    items: [
+      "Use only with compatible cold spark machines",
+      "Follow seller and manufacturer instructions",
+      "Do not mix with other substances",
+      "Keep away from water and moisture",
+      "Never ignite manually",
+    ],
+  },
+  {
+    icon: "📦",
+    title: "Storage & Handling Safety",
+    items: [
+      "Store in a cool, dry place",
+      "Keep in original sealed packaging",
+      "Keep away from children and pets",
+      "Do not reuse spilled or contaminated material",
+    ],
+  },
+  {
+    icon: "🎪",
+    title: "Event & Venue Safety",
+    items: [
+      "Maintain safe distance from people and decor",
+      "Adjust spark height according to venue size",
+      "Ensure proper ventilation indoors",
+      "Follow venue and local safety regulations",
+    ],
+  },
+  {
+    icon: "🌿",
+    title: "Environmental & Health Safety",
+    items: [
+      "Minimal residue, no toxic smoke",
+      "Safe for short-term exposure",
+      "Avoid inhaling powder directly",
+    ],
+  },
+];
 
 function Safety() {
   return (
     <>
       <Header />
-
-      {/* HERO */}
-      <section className="safety-hero">
-        <h1>Cold Pyro Safety Information</h1>
-        <p>
-          Designed for stunning visual effects with the highest safety standards
-        </p>
-      </section>
-
-      {/* CONTENT */}
-      <section className="safety-container">
-
-        <div className="safety-card">
-          <h2>What is Cold Pyro?</h2>
+      <main className="sf-page">
+        {/* HERO */}
+        <section className="sf-hero">
+          <span className="sf-eyebrow">🛡️ Safety first</span>
+          <h1>
+            Cold Pyro <span>Safety Information</span>
+          </h1>
           <p>
-            Cold Pyro is a special cold spark effect material designed to produce
-            bright, visually appealing sparks without heat, flame, or explosion
-            when used with approved systems. It is widely used in weddings,
-            stage shows, concerts, parties, and indoor events.
+            Designed for stunning visual effects with the highest safety
+            standards.
           </p>
-        </div>
+        </section>
 
-        <div className="safety-card">
-          <h2>Why Cold Pyro is Safe</h2>
-          <ul>
-            <li>No gunpowder or explosive chemicals</li>
-            <li>Sparks are cool to touch and do not cause burns</li>
-            <li>No open fire, no smoke, no harmful gases</li>
-            <li>Safe for indoor and outdoor use</li>
-          </ul>
-        </div>
+        {/* BADGES */}
+        <section className="sf-badges">
+          {BADGES.map((b) => (
+            <div className="sf-badge" key={b.label}>
+              <span aria-hidden="true">{b.icon}</span>
+              {b.label}
+            </div>
+          ))}
+        </section>
 
-        <div className="safety-card">
-          <h2>Usage Safety Guidelines</h2>
-          <ul>
-            <li>Use only with compatible cold spark machines</li>
-            <li>Follow seller and manufacturer instructions</li>
-            <li>Do not mix with other substances</li>
-            <li>Keep away from water and moisture</li>
-            <li>Never ignite manually</li>
-          </ul>
-        </div>
+        <section className="sf-wrap">
+          {/* WHAT IS */}
+          <div className="sf-intro">
+            <span className="sf-icon" aria-hidden="true">❄️</span>
+            <div>
+              <h2>What is Cold Pyro?</h2>
+              <p>
+                Cold Pyro is a special cold spark effect material designed to
+                produce bright, visually appealing sparks without heat, flame,
+                or explosion when used with approved systems. It is widely used
+                in weddings, stage shows, concerts, parties, and indoor events.
+              </p>
+            </div>
+          </div>
 
-        <div className="safety-card">
-          <h2>Storage & Handling Safety</h2>
-          <ul>
-            <li>Store in a cool, dry place</li>
-            <li>Keep in original sealed packaging</li>
-            <li>Keep away from children and pets</li>
-            <li>Do not reuse spilled or contaminated material</li>
-          </ul>
-        </div>
+          {/* CARDS */}
+          <div className="sf-grid">
+            {SECTIONS.map((s) => (
+              <article
+                className={`sf-card${s.tone ? ` sf-card-${s.tone}` : ""}`}
+                key={s.title}
+              >
+                <div className="sf-card-head">
+                  <span className="sf-icon" aria-hidden="true">{s.icon}</span>
+                  <h2>{s.title}</h2>
+                </div>
+                <ul>
+                  {s.items.map((i) => (
+                    <li key={i}>{i}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
 
-        <div className="safety-card">
-          <h2>Event & Venue Safety</h2>
-          <ul>
-            <li>Maintain safe distance from people and decor</li>
-            <li>Adjust spark height according to venue size</li>
-            <li>Ensure proper ventilation indoors</li>
-            <li>Follow venue and local safety regulations</li>
-          </ul>
-        </div>
+          {/* DISCLAIMER */}
+          <div className="sf-disclaimer" role="note">
+            <span className="sf-icon" aria-hidden="true">⚠️</span>
+            <div>
+              <h3>Disclaimer</h3>
+              <p>
+                Cold Pyro is safe when used responsibly and as directed.
+                PyroDekho shall not be liable for any damage or injury caused
+                by misuse, improper storage, or use with non-compatible
+                systems.
+              </p>
+            </div>
+          </div>
 
-        <div className="safety-card">
-          <h2>Environmental & Health Safety</h2>
-          <ul>
-            <li>Minimal residue, no toxic smoke</li>
-            <li>Safe for short-term exposure</li>
-            <li>Avoid inhaling powder directly</li>
-          </ul>
-        </div>
-
-        <div className="safety-disclaimer">
-          <h3>Disclaimer</h3>
-          <p>
-            Cold Pyro is safe when used responsibly and as directed. PyroDekho
-            shall not be liable for any damage or injury caused by misuse,
-            improper storage, or use with non-compatible systems.
-          </p>
-        </div>
-
-      </section>
-
+          {/* CTA */}
+          <div className="sf-cta">
+            <p>Have a question about safe usage for your event?</p>
+            <Link to="/contact" className="sf-btn">Talk to our team</Link>
+          </div>
+        </section>
+      </main>
       <Footer />
     </>
   );

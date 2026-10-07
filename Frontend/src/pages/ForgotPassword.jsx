@@ -1,23 +1,29 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import "../styles/login.css";
-import Header from "../components/Header";
 import axios from "axios";
+import { FaEnvelope, FaLock, FaArrowLeft, FaCheck } from "react-icons/fa";
+import "../styles/forgotPassword.css";
+import Header from "../components/Header";
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sentTo, setSentTo] = useState("");
 
-  const sendLink = async () => {
-    if (!email.trim()) {
+  const sendLink = async (e) => {
+    e.preventDefault();
+    const value = email.trim();
+
+    if (!value) {
       toast.error("Please enter your email address ❗");
       return;
     }
 
     // basic email validation
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
+    if (!/^\S+@\S+\.\S+$/.test(value)) {
       toast.error("Please enter a valid email address 📧");
       return;
     }
@@ -26,19 +32,17 @@ function ForgotPassword() {
     const toastId = toast.loading("Sending reset link...");
 
     try {
-      const res = await axios.post(
-        `${API}/auth/forgot-password`,
-        { email }
-      );
-
-      const data = res.data;
+      const res = await axios.post(`${API}/auth/forgot-password`, {
+        email: value,
+      });
 
       toast.success(
-        data.message ||
+        res.data.message ||
           "Password reset link sent successfully 📩 Please check your email.",
         { id: toastId }
       );
 
+      setSentTo(value);
       setEmail("");
     } catch (error) {
       toast.error(
@@ -54,29 +58,72 @@ function ForgotPassword() {
   return (
     <>
       <Header />
-      <div className="login-page">
-        <div className="login-card">
-          <h2>Forgot Password</h2>
-          <p className="login-subtitle">
-            Enter your registered email and we’ll send you a password reset link.
-          </p>
+      <main className="fp-page">
+        <div className="fp-card">
+          {sentTo ? (
+            <div className="fp-success">
+              <span className="fp-badge fp-badge-ok" aria-hidden="true">
+                <FaCheck />
+              </span>
+              <h1>Check your email</h1>
+              <p className="fp-sub">
+                We’ve sent a password reset link to{" "}
+                <strong>{sentTo}</strong>. It may take a minute to arrive.
+              </p>
+              <p className="fp-hint">
+                Can’t find it? Check your spam folder, or try again.
+              </p>
+              <button
+                type="button"
+                className="fp-btn fp-btn-ghost"
+                onClick={() => setSentTo("")}
+              >
+                Use a different email
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={sendLink} noValidate>
+              <span className="fp-badge" aria-hidden="true">
+                <FaLock />
+              </span>
+              <h1>Forgot Password?</h1>
+              <p className="fp-sub">
+                No worries. Enter your registered email and we’ll send you a
+                password reset link.
+              </p>
 
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+              <label className="fp-label" htmlFor="fp-email">
+                Email address
+              </label>
+              <div className="fp-field">
+                <FaEnvelope aria-hidden="true" />
+                <input
+                  id="fp-email"
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={loading}
+                />
+              </div>
 
-          <button
-            className="primary-btn"
-            onClick={sendLink}
-            disabled={loading}
-          >
-            {loading ? "Sending..." : "Send Reset Link"}
-          </button>
+              <button
+                type="submit"
+                className="fp-btn fp-btn-primary"
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send Reset Link"}
+              </button>
+            </form>
+          )}
+
+          <Link to="/login" className="fp-back">
+            <FaArrowLeft aria-hidden="true" /> Back to login
+          </Link>
         </div>
-      </div>
+      </main>
     </>
   );
 }

@@ -3,7 +3,6 @@
 ========================= */
 .privacy-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #020617, #0f172a);
   display: flex;
   justify-content: center;
   padding: 40px 15px;
