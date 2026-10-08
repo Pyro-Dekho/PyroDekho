@@ -100,3 +100,16 @@
   }
 }
 
+
+/* Page title for indoor/outdoor listings (matches production).
+   Desktop only: at 1200px and below the title shrinks with the screen
+   (cracker.css / eventParties.css), same as the React app. */
+@media (min-width: 1201px) {
+  .page-container > .page-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 20px;
+    margin-top: 20px;
+  }
+}
