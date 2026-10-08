@@ -9,12 +9,14 @@ import { getProductsByCategory, getVideos } from "@/lib/api";
 import "@/styles/cracker.css";
 import "@/styles/videoGrid.css";
 import "@/styles/listing.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Crackers & Pyro Effects",
   description:
     "Premium event crackers and pyro effects for weddings and celebrations. Watch testing videos and get the best price.",
-};
+  path: "/crackers",
+});
 
 async function CrackersContent() {
   const [crackers, videos] = await Promise.all([

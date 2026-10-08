@@ -5,12 +5,14 @@ import Loader from "@/components/Loader";
 import ProductGrid from "@/components/ProductGrid";
 import { getProductsByCategory } from "@/lib/api";
 import "@/styles/listing.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Outdoor Cold Pyro Products",
   description:
     "Outdoor cold pyro and spark effects for weddings, entries, concerts and events. Safe, smokeless and delivered all over India.",
-};
+  path: "/outdoor",
+});
 
 async function OutdoorProducts() {
   const products = await getProductsByCategory("outdoor");

@@ -1,12 +1,14 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import "@/styles/privacyPolicy.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
   description:
     "How PyroDekho collects, uses and protects your personal information.",
-};
+  path: "/privacy-policy",
+});
 
 
 function PrivacyPolicy() {

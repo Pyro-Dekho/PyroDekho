@@ -2,12 +2,14 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/safety.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Cold Pyro Safety Information",
   description:
     "Cold pyro safety guide: why it is safe, usage guidelines, storage, venue and environmental safety.",
-};
+  path: "/safety",
+});
 
 
 const BADGES = [

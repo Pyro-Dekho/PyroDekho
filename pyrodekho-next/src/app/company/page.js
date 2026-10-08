@@ -2,12 +2,14 @@ import "@/styles/company.css";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Company",
   description:
     "Learn about PyroDekho: cold pyro products, event crackers, our values and the planners, DJs and event companies we serve across India.",
-};
+  path: "/company",
+});
 
 
 const STATS = [

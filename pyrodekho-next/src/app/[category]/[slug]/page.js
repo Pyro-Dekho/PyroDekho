@@ -9,6 +9,7 @@ import CardListing from "@/components/CardListing";
 import ProductImageZoom from "@/components/ProductImageZoom";
 import ShareButton from "@/components/ShareButton";
 import { getProduct, getProductsByCategory } from "@/lib/api";
+import { pageMetadata } from "@/lib/seo";
 import "@/styles/ProductDetail.css";
 import "@/styles/listing.css";
 
@@ -27,16 +28,27 @@ const formatLabel = (key) =>
     .replace(/([A-Z])/g, " $1")
     .replace(/^./, (char) => char.toUpperCase());
 
+// Product photo as a 1200x630 JPG share card (padded so the whole product
+// shows). JPG because WhatsApp doesn't reliably preview WebP/AVIF.
+const shareImage = (url) =>
+  url?.includes("res.cloudinary.com") && url.includes("/upload/")
+    ? url.replace("/upload/", "/upload/f_jpg,q_auto,w_1200,h_630,c_pad,b_white/")
+    : url;
+
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
+  const { category, slug } = await params;
   const product = await getProduct(slug);
 
   if (!product) return { title: "Product not found" };
 
-  return {
+  return pageMetadata({
     title: product.title,
     description: `Buy ${product.title} starting ₹${product.price} / piece. Safe, smokeless cold pyro by PyroDekho, delivered all over India.`,
-  };
+    path: `/${category}/${slug}`,
+    images: product.image
+      ? [{ url: shareImage(product.image), width: 1200, height: 630, alt: product.title }]
+      : undefined,
+  });
 }
 
 async function RelatedProducts({ product }) {

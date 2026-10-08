@@ -5,12 +5,14 @@ import Loader from "@/components/Loader";
 import ProductGrid from "@/components/ProductGrid";
 import { getProductsByCategory } from "@/lib/api";
 import "@/styles/listing.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Indoor Cold Pyro Products",
   description:
     "Indoor-safe cold pyro and spark fountains for weddings, stage shows and parties. No fire, no smoke. Delivered all over India.",
-};
+  path: "/indoor",
+});
 
 async function IndoorProducts() {
   const products = await getProductsByCategory("indoor");

@@ -5,12 +5,14 @@ import Loader from "@/components/Loader";
 import VideoCard from "@/components/VideoCard";
 import { getVideos } from "@/lib/api";
 import "@/styles/eventParties.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Event & Wedding Pyro Videos",
   description:
     "Watch cold pyro effects at real weddings, stage shows and parties by PyroDekho.",
-};
+  path: "/eventParties",
+});
 
 async function EventVideos() {
   const videos = await getVideos("event");

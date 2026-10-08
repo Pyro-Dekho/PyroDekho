@@ -2,12 +2,14 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/about.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "About Us",
   description:
     "PyroDekho is a trusted digital platform for safe, modern and spectacular cold pyro solutions for weddings, stage shows and events across India.",
-};
+  path: "/about",
+});
 
 
 const HIGHLIGHTS = [

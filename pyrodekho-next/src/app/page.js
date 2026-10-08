@@ -7,10 +7,12 @@ import HomeContent from "@/views/HomeContent";
 import { getHomeProducts, getVideos } from "@/lib/api";
 import "@/styles/Home.css";
 import "@/styles/listing.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: { absolute: "Pyro Dekho | Buy Imported Cold Pyro for Weddings & Events" },
-};
+  path: "/",
+});
 
 async function HomeData() {
   const [homeData, videos] = await Promise.all([

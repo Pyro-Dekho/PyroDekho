@@ -5,18 +5,23 @@ import AppBackground, { BackgroundLayer } from "@/components/AppBackground";
 import "./globals.css";
 import "@/styles/mobile.css";
 
+import { SITE_URL, DEFAULT_TITLE, pageMetadata } from "@/lib/seo";
+
 const GA_ID = "G-RLBPXWVQ1M";
 
+// Defaults for every page; pages override title, description and share card
 export const metadata = {
+  metadataBase: new URL(SITE_URL),
+  applicationName: "PyroDekho",
+  ...pageMetadata({}),
   title: {
-    default: "Pyro Dekho | Buy Imported Cold Pyro",
+    default: DEFAULT_TITLE,
     template: "%s | PyroDekho",
   },
-  description:
-    "Buy imported cold pyro, fog and event crackers for weddings, stage shows, clubs and birthdays. Safe, smokeless and delivered all over India.",
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
+    apple: "/logo.png",
   },
 };
 

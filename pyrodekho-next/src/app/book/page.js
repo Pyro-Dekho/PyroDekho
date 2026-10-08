@@ -4,12 +4,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookNowView from "@/views/BookNowView";
 import "@/styles/book.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Book Cold Pyro for Your Event",
   description:
     "Book premium cold pyro effects for your wedding, birthday, stage show, corporate event or club night. Send an enquiry and our team will call you.",
-};
+  path: "/book",
+});
 
 export default function BookPage() {
   return (

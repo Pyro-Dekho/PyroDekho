@@ -1,12 +1,14 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/Term.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Terms & Conditions",
   description:
     "Terms and conditions for using PyroDekho and buying cold pyro products.",
-};
+  path: "/terms",
+});
 
 
 function TermsAndConditions() {

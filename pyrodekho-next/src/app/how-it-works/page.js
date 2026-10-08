@@ -2,12 +2,14 @@ import Link from "next/link";
 import "@/styles/howItWorks.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "How It Works",
   description:
     "How PyroDekho works: explore cold pyro effects, choose the right one, enquire online and celebrate safely with expert guidance.",
-};
+  path: "/how-it-works",
+});
 
 
 const STEPS = [
