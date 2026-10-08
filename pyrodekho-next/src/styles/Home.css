@@ -1,0 +1,108 @@
+/* =========================
+   HOME SECTION
+   Each category is a white card with even spacing
+========================= */
+.home-section {
+  max-width: 1320px;
+  margin: 28px auto;
+  padding: 28px 40px 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* remove the duplicate top margin coming from listing.css */
+.home-section .section-title {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.home-section .listings {
+  padding: 16px 0 0;
+  margin-bottom: 0;
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+.listings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* =========================
+   NO RESULTS
+========================= */
+.no-results {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+/* =========================
+   LAPTOP ≤1200px
+========================= */
+@media (max-width: 1200px) {
+  .home-section {
+    margin: 24px 24px;
+    padding: 24px 28px 28px;
+  }
+
+  .listings {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .home-section .section-title {
+    font-size: 24px;
+  }
+}
+
+/* =========================
+   TABLET ≤900px
+========================= */
+@media (max-width: 900px) {
+  .home-section {
+    margin: 20px 16px;
+    padding: 20px 16px 24px;
+  }
+
+  .listings {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .home-section .section-title {
+    font-size: 22px;
+  }
+}
+
+/* =========================
+   LARGE MOBILE ≤600px
+========================= */
+@media (max-width: 600px) {
+  .listings {
+    grid-template-columns: 1fr;
+  }
+
+  .home-section .section-title {
+    font-size: 20px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE ≤480px
+========================= */
+@media (max-width: 480px) {
+  .home-section {
+    margin: 16px 10px;
+    padding: 16px 12px 20px;
+    border-radius: 14px;
+  }
+
+  .home-section .section-title {
+    font-size: 18px;
+  }
+}

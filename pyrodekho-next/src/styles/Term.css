@@ -1,0 +1,64 @@
+.terms-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  /* background: #ffffff;  */
+}
+
+.terms-title {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.terms-intro {
+  font-size: 16px;
+  color: #374151;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.terms-section {
+  margin-bottom: 25px;
+}
+
+.terms-section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.terms-section ul {
+  padding-left: 20px;
+}
+
+.terms-section li {
+  margin-bottom: 8px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.contact p {
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.terms-footer {
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 15px;
+  color: #374151;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .terms-title {
+    font-size: 28px;
+  }
+
+  .terms-section h2 {
+    font-size: 18px;
+  }
+}

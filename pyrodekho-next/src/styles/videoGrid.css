@@ -1,0 +1,67 @@
+/* White section card, same style as the Home product sections */
+.video-section {
+  max-width: 1320px;
+  margin: 28px auto;
+  padding: 28px 40px 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Title */
+.home-video-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 22px;
+}
+
+/* ===== UPDATED PART ===== */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;                
+  align-items: start;
+  /* background-color: blue; */
+}
+
+
+/* cards fill their column; light grey so they stand out on the white section */
+.video-section .video-grid {
+  align-items: stretch;
+}
+
+.video-section .video-card {
+  width: 100%;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  box-shadow: none;
+}
+
+.video-section .video-title {
+  margin-top: 10px;
+}
+
+@media (max-width: 1200px) {
+  .video-section {
+    margin: 24px 24px;
+    padding: 24px 28px 28px;
+  }
+}
+
+@media (max-width: 900px) {
+  .video-section {
+    margin: 20px 16px;
+    padding: 20px 16px 24px;
+  }
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+}
