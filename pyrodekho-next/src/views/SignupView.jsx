@@ -1,0 +1,191 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import "@/styles/signup.css";
+import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAuth } from "@/context/AuthContext";
+
+const API = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+
+function SignupView() {
+  const router = useRouter();
+  const { refreshAuth } = useAuth();
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const finishSignup = async () => {
+    /* =====================
+       VALIDATION
+    ===================== */
+    if (!name || !phone || !email || !password || !confirmPassword) {
+      toast.error("Please fill in all required fields ❗");
+      return;
+    }
+
+    // Phone (India)
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+      toast.error("Please enter a valid mobile number 📞");
+      return;
+    }
+
+    // Email
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Please enter a valid email address 📧");
+      return;
+    }
+
+    // Password strength
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters 🔒");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match ❌");
+      return;
+    }
+
+    setLoading(true);
+    const toastId = toast.loading("Creating your account...");
+
+
+    try {
+      const res = await axios.post(
+        `${API}/auth/signup`,
+        { name, email, phone, password, address }
+      );
+
+      toast.success("Account created successfully 🎉 Welcome to PyroDekho!", {
+        id: toastId,
+      });
+
+      // Log the user in and go to the home page
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userEmail", res.data.user.email);
+      await refreshAuth();
+
+      router.replace("/");
+    } catch (err) {
+      if (err.response?.status === 409) {
+        toast.error(
+          "Account already exists. Please login instead 🔐",
+          { id: toastId }
+        );
+        router.push("/login");
+      } else {
+        toast.error(
+          "Signup failed. Please try again ❌",
+          { id: toastId }
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="signup-page">
+      <div className="signup-card">
+        <h1>Create Account</h1>
+        <p className="subtitle">
+          Complete your signup to continue
+        </p>
+
+        <input
+          type="text"
+          placeholder="Full Name *"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Mobile Number *"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          maxLength={10}
+        />
+
+        <input
+          type="email"
+          placeholder="Email Address *"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Address (optional)"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+
+        {/* 🔐 Password */}
+        <div className="password-wrapper">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password *"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <span
+            className="eye-icon"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+
+        {/* 🔐 Confirm Password */}
+        <div className="password-wrapper">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Confirm Password *"
+            value={confirmPassword}
+            onChange={(e) =>
+              setConfirmPassword(e.target.value)
+            }
+          />
+          <span
+            className="eye-icon"
+            onClick={() =>
+              setShowConfirmPassword(!showConfirmPassword)
+            }
+          >
+            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+
+        <button
+          className="primary-btn"
+          onClick={finishSignup}
+          disabled={loading}
+        >
+          {loading ? "Creating Account..." : "Create Account"}
+        </button>
+
+        <p className="footer-text">
+          Already have an account?{" "}
+          <span onClick={() => router.push("/login")}>
+            Login
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default SignupView;
