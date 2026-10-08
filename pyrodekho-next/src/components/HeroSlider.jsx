@@ -1,6 +1,5 @@
 "use client";
 
-import "@/styles/slider.css";
 import Link from "next/link";
 import { useState } from "react";
 

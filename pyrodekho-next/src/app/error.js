@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import "@/styles/ProductDetail.css";
 
 export default function Error({ retry }) {
   return (

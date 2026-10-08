@@ -1,5 +1,4 @@
 import Link from "next/link";
-import "@/styles/ProductDetail.css";
 
 export default function ProductNotFound() {
   return (

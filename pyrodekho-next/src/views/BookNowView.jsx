@@ -4,7 +4,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-import "@/styles/book.css";
 
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
 

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import "@/styles/safety.css";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({

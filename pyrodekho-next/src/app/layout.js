@@ -2,8 +2,37 @@ import { Suspense } from "react";
 import Script from "next/script";
 import Providers from "@/components/Providers";
 import AppBackground, { BackgroundLayer } from "@/components/AppBackground";
+// All styles load once, here, in the same order as the old Vite app's single
+// CSS bundle: page CSS first, then base styles, then mobile.css (which must
+// come after page CSS to win), then the background. Pages and components don't
+// import CSS themselves, so this order can't change between routes.
+import "@/styles/header.css";
+import "@/styles/Button.css";
+import "@/styles/footer.css";
+import "@/styles/videoGrid.css";
+import "@/styles/slider.css";
+import "@/styles/loader.css";
+import "@/styles/Home.css";
+import "@/styles/about.css";
+import "@/styles/safety.css";
+import "@/styles/contact.css";
+import "@/styles/Term.css";
+import "@/styles/privacyPolicy.css";
+import "@/styles/company.css";
+import "@/styles/howItWorks.css";
+import "@/styles/login.css";
+import "@/styles/signup.css";
+import "@/styles/forgotPassword.css";
+import "@/styles/listing.css";
+import "@/styles/cracker.css";
+import "@/styles/eventParties.css";
+import "@/styles/ProductDetail.css";
+import "@/styles/book.css";
+import "@/styles/addProduct.css";
+import "@/styles/addVideo.css";
 import "./globals.css";
 import "@/styles/mobile.css";
+import "@/styles/background.css";
 
 import { SITE_URL, DEFAULT_TITLE, pageMetadata } from "@/lib/seo";
 

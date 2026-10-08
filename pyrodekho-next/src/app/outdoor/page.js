@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import ProductGrid from "@/components/ProductGrid";
 import { getProductsByCategory } from "@/lib/api";
-import "@/styles/listing.css";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({

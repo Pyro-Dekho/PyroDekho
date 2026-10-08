@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import "@/styles/addVideo.css";
 import toast from "react-hot-toast";
 
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;

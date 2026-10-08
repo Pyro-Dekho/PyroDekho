@@ -8,7 +8,6 @@ import {
   FaWhatsapp,
   FaEnvelope,
 } from "react-icons/fa";
-import "@/styles/footer.css";
 
 const SOCIALS = [
   {

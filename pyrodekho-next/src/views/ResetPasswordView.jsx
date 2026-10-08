@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-import "@/styles/login.css";
 import axios from "axios";
 
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;

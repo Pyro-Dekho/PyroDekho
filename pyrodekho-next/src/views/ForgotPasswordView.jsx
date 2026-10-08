@@ -5,7 +5,6 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { FaEnvelope, FaLock, FaArrowLeft, FaCheck } from "react-icons/fa";
-import "@/styles/forgotPassword.css";
 
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
 

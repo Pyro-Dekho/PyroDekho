@@ -1,5 +1,4 @@
 import Link from "next/link";
-import "@/styles/howItWorks.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { pageMetadata } from "@/lib/seo";

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
-import "@/styles/addProduct.css";
 
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
 

@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import "@/styles/login.css";
 import axios from "axios";
 import { useAuth } from "@/context/AuthContext";
 

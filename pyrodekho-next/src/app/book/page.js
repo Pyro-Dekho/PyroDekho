@@ -3,7 +3,6 @@ import { FaPhoneAlt, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookNowView from "@/views/BookNowView";
-import "@/styles/book.css";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({

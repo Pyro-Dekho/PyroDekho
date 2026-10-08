@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import VideoCard from "@/components/VideoCard";
 import { getVideos } from "@/lib/api";
-import "@/styles/eventParties.css";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({

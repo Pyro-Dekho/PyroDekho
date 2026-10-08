@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import "@/styles/background.css";
 
 // Routes that get the slightly stronger "hero" glow.
 // Everything else uses the softer, content-friendly version.

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { FaPhoneAlt, FaWhatsapp, FaEnvelope, FaArrowRight } from "react-icons/fa";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import "@/styles/contact.css";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({

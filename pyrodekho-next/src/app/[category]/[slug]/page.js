@@ -10,8 +10,6 @@ import ProductImageZoom from "@/components/ProductImageZoom";
 import ShareButton from "@/components/ShareButton";
 import { getProduct, getProductsByCategory } from "@/lib/api";
 import { pageMetadata } from "@/lib/seo";
-import "@/styles/ProductDetail.css";
-import "@/styles/listing.css";
 
 const WHATSAPP_NUMBER = "919412660853";
 const CALL_NUMBER = "9718410923";

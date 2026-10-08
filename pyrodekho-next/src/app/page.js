@@ -5,8 +5,6 @@ import VideoGrid from "@/components/VideoGrid";
 import Loader from "@/components/Loader";
 import HomeContent from "@/views/HomeContent";
 import { getHomeProducts, getVideos } from "@/lib/api";
-import "@/styles/Home.css";
-import "@/styles/listing.css";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({

@@ -1,4 +1,3 @@
-import "@/styles/videoGrid.css";
 import VideoCard from "./VideoCard";
 
 function VideoGrid({ videos }) {

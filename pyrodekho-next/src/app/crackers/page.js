@@ -6,9 +6,6 @@ import Loader from "@/components/Loader";
 import ProductGrid from "@/components/ProductGrid";
 import { getProductsByCategory, getVideos } from "@/lib/api";
 
-import "@/styles/cracker.css";
-import "@/styles/videoGrid.css";
-import "@/styles/listing.css";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
