@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -13,6 +14,8 @@ function ResetPasswordView() {
 
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const resetNow = async () => {
@@ -72,19 +75,41 @@ function ResetPasswordView() {
           Enter a new password for your account
         </p>
 
-        <input
-          type="password"
-          placeholder="New password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        {/* 🔐 New password */}
+        <div className="password-wrapper">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="New password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <span
+            className="eye-icon"
+            role="button"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
 
-        <input
-          type="password"
-          placeholder="Confirm new password"
-          value={confirm}
-          onChange={(e) => setConfirm(e.target.value)}
-        />
+        {/* 🔐 Confirm new password */}
+        <div className="password-wrapper">
+          <input
+            type={showConfirm ? "text" : "password"}
+            placeholder="Confirm new password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+          />
+          <span
+            className="eye-icon"
+            role="button"
+            aria-label={showConfirm ? "Hide password" : "Show password"}
+            onClick={() => setShowConfirm(!showConfirm)}
+          >
+            {showConfirm ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
 
         <button
           className="primary-btn"

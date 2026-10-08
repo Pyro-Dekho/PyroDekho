@@ -62,13 +62,17 @@
 /* =========================
    PASSWORD + EYE ICON
 ========================= */
+/* The gap below the field lives on the wrapper (not the input) so the
+   eye icon is centred on the input itself */
 .password-wrapper {
   position: relative;
+  margin-bottom: 15px;
 }
 
 .password-wrapper input {
   width: 100%;
   padding-right: 45px;
+  margin-bottom: 0;
 }
 
 .eye-icon {
