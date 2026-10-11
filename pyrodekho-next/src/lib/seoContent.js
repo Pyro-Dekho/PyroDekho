@@ -79,3 +79,30 @@ export const SEO_CONTENT = {
     ],
   },
 };
+
+const CATEGORY_NAMES = {
+  indoor: "indoor",
+  outdoor: "outdoor",
+  cracker: "event",
+};
+
+// Short description for a product page, built only from the product's own
+// details so it never claims anything the product data doesn't say.
+export function buildProductDescription(product) {
+  const tech = product.technical || {};
+  const kind = CATEGORY_NAMES[product.category];
+  const name = product.title;
+
+  const intro = kind
+    ? `${name} is an imported ${kind} cold pyro effect from PyroDekho for weddings, stage shows, clubs and parties.`
+    : `${name} is an imported cold pyro effect from PyroDekho for weddings, stage shows, clubs and parties.`;
+
+  const facts = [];
+  if (tech.sparkHeight) facts.push(`a spark height of ${tech.sparkHeight}`);
+  if (tech.burnTime) facts.push(`a burn time of ${tech.burnTime}`);
+  const details = facts.length ? ` It gives ${facts.join(" and ")}.` : "";
+
+  const smoke = tech.smoke ? ` Smoke: ${tech.smoke}.` : "";
+
+  return `${intro}${details}${smoke} It is delivered all over India. Use Book Now, WhatsApp or Call to get a quote.`;
+}
