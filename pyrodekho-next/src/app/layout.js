@@ -34,7 +34,8 @@ import "./globals.css";
 import "@/styles/mobile.css";
 import "@/styles/background.css";
 
-import { SITE_URL, DEFAULT_TITLE, pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, SITE_NAME, DEFAULT_DESCRIPTION, DEFAULT_TITLE, pageMetadata } from "@/lib/seo";
 
 const GA_ID = "G-RLBPXWVQ1M";
 
@@ -54,6 +55,31 @@ export const metadata = {
   },
 };
 
+// Tells Google who the business is (shows in knowledge panels and results)
+const ORGANIZATION_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  description: DEFAULT_DESCRIPTION,
+  areaServed: "IN",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+91-9718410923",
+    contactType: "sales",
+    areaServed: "IN",
+    availableLanguage: ["English", "Hindi"],
+  },
+};
+
+const WEBSITE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: SITE_URL,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -66,6 +92,9 @@ export default function RootLayout({ children }) {
           </Suspense>
           {children}
         </Providers>
+
+        <JsonLd data={ORGANIZATION_SCHEMA} />
+        <JsonLd data={WEBSITE_SCHEMA} />
 
         {/* Google Analytics (GA4) */}
         <Script

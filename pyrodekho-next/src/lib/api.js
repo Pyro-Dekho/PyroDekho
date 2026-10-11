@@ -45,3 +45,6 @@ export const getProduct = (slug) =>
 
 export const getVideos = (type) =>
   getData(`/videos?type=${encodeURIComponent(type)}`, []);
+
+// Every product, used to build the sitemap
+export const getAllProducts = () => getData("/products", []);
