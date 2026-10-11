@@ -11,6 +11,7 @@ import ShareButton from "@/components/ShareButton";
 import JsonLd from "@/components/JsonLd";
 import { getProduct, getProductsByCategory } from "@/lib/api";
 import { pageMetadata, SITE_URL, SITE_NAME } from "@/lib/seo";
+import { buildProductDescription } from "@/lib/seoContent";
 
 const WHATSAPP_NUMBER = "919412660853";
 const CALL_NUMBER = "9718410923";
@@ -93,13 +94,14 @@ async function ProductDetail({ params }) {
   // Pre-fills the booking form message
   const bookLink = `/book?product=${encodeURIComponent(product.title)}`;
 
+  const description = buildProductDescription(product);
   const productUrl = `${SITE_URL}/${product.category}/${slug}`;
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
     image: product.image ? [product.image] : undefined,
-    description: `${product.title} - safe, smokeless cold pyro by ${SITE_NAME}, delivered all over India.`,
+    description: description,
     brand: { "@type": "Brand", name: SITE_NAME },
     offers: {
       "@type": "Offer",
@@ -172,6 +174,8 @@ async function ProductDetail({ params }) {
               Starting ₹{product.price}
               <span> / piece</span>
             </p>
+
+            <p className="seoc-product-about">{description}</p>
 
             {/* KEY SPECS */}
             {chips.length > 0 && (

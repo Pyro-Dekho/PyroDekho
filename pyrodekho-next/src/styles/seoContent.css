@@ -64,3 +64,16 @@
     font-size: 14px;
   }
 }
+
+/* Short description on product pages */
+.seoc-product-about {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+@media (max-width: 600px) {
+  .seoc-product-about {
+    font-size: 14px;
+  }
+}

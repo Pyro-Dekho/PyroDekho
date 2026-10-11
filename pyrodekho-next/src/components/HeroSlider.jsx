@@ -83,6 +83,7 @@ function HeroSlider() {
     >
       <video
         className="hero-video"
+        aria-hidden="true"
         src={heroVideo}
         poster={heroPoster}
         autoPlay
