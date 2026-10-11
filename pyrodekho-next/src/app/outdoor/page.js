@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SeoContent from "@/components/SeoContent";
 import Loader from "@/components/Loader";
 import ProductGrid from "@/components/ProductGrid";
 import { getProductsByCategory } from "@/lib/api";
@@ -31,6 +32,8 @@ export default function OutdoorPage() {
             <OutdoorProducts />
           </Suspense>
         </section>
+
+        <SeoContent category="outdoor" />
       </div>
 
       <Footer />

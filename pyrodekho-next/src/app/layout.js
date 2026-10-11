@@ -33,6 +33,7 @@ import "@/styles/addVideo.css";
 import "./globals.css";
 import "@/styles/mobile.css";
 import "@/styles/background.css";
+import "@/styles/seoContent.css";
 
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, SITE_NAME, DEFAULT_DESCRIPTION, DEFAULT_TITLE, pageMetadata } from "@/lib/seo";

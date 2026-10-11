@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SeoContent from "@/components/SeoContent";
 import VideoGrid from "@/components/VideoGrid";
 import Loader from "@/components/Loader";
 import ProductGrid from "@/components/ProductGrid";
@@ -35,6 +36,8 @@ async function CrackersContent() {
             searchEmptyText="No crackers found for “{q}” 🔍"
           />
         </div>
+
+        <SeoContent category="cracker" />
       </section>
 
       {/* 🎥 VIDEOS */}
