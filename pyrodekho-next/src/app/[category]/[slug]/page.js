@@ -8,8 +8,9 @@ import Loader from "@/components/Loader";
 import CardListing from "@/components/CardListing";
 import ProductImageZoom from "@/components/ProductImageZoom";
 import ShareButton from "@/components/ShareButton";
+import JsonLd from "@/components/JsonLd";
 import { getProduct, getProductsByCategory } from "@/lib/api";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 const WHATSAPP_NUMBER = "919412660853";
 const CALL_NUMBER = "9718410923";
@@ -92,8 +93,45 @@ async function ProductDetail({ params }) {
   // Pre-fills the booking form message
   const bookLink = `/book?product=${encodeURIComponent(product.title)}`;
 
+  const productUrl = `${SITE_URL}/${product.category}/${slug}`;
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    image: product.image ? [product.image] : undefined,
+    description: `${product.title} - safe, smokeless cold pyro by ${SITE_NAME}, delivered all over India.`,
+    brand: { "@type": "Brand", name: SITE_NAME },
+    offers: {
+      "@type": "Offer",
+      url: productUrl,
+      priceCurrency: "INR",
+      price: product.price,
+      availability: inStock
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+    },
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      ...(categoryPage
+        ? [{ "@type": "ListItem", position: 2, name: categoryLabel, item: `${SITE_URL}${categoryPage}` }]
+        : []),
+      {
+        "@type": "ListItem",
+        position: categoryPage ? 3 : 2,
+        name: product.title,
+        item: productUrl,
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={productSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <div className="pd-page">
         {/* BREADCRUMBS */}
         <nav className="pd-breadcrumbs" aria-label="Breadcrumb">
